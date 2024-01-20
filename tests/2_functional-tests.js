@@ -12,7 +12,7 @@ suite('Functional Tests', function() {
          .get('/api/stock-prices')
          .query({stock: 'goog'})
          .end(function(err, res){
-           assert.equal(res.body['stockData']['stock'], 'GOOG')
+           assert.equal(res.body['stockData']['stock'], 'goog')
            assert.isNotNull(res.body['stockData']['price'])
             assert.isNotNull(res.body['stockData']['likes'])
            done();
