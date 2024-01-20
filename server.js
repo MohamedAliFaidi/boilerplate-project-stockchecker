@@ -1,10 +1,12 @@
 'use strict';
-require('dotenv').config();
 const express     = require('express');
 const bodyParser  = require('body-parser');
 const cors        = require('cors');
 const helmet = require('helmet');
 
+require('dotenv').config();
+
+console.log(process.env)
 
 const apiRoutes         = require('./routes/api.js');
 const fccTestingRoutes  = require('./routes/fcctesting.js');
