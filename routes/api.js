@@ -30,7 +30,7 @@ module.exports = function (app) {
       console.log(stockData);
 
       // Send the response
-      res.json({ stockData, });
+      res.json({ stockData:{stock:stockData.symbol,price:stockData.latestPrice} });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });

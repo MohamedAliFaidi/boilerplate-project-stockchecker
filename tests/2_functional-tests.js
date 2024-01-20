@@ -7,4 +7,16 @@ chai.use(chaiHttp);
 
 suite('Functional Tests', function() {
 
+    test('1 stock', function(done) {
+        chai.request(server)
+         .get('/api/stock-prices')
+         .query({stock: 'goog'})
+         .end(function(err, res){
+           assert.equal(res.body['stockData']['stock'], 'GOOG')
+           assert.isNotNull(res.body['stockData']['price'])
+            assert.isNotNull(res.body['stockData']['likes'])
+           done();
+         });
+       });
+
 });
