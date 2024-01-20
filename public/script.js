@@ -1,10 +1,13 @@
 document.getElementById('testForm2').addEventListener('submit', e => {
   e.preventDefault();
   const stock = e.target[0].value;
+  console.log(stock);
   const checkbox = e.target[1].checked;
+  console.log(checkbox);
   fetch(`/api/stock-prices/?stock=${stock}&like=${checkbox}`)
     .then(res => res.json())
     .then(data => {
+      console.log(data);
       document.getElementById('jsonResult').innerText = JSON.stringify(data);
     });
 });
