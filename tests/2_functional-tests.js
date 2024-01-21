@@ -18,5 +18,53 @@ suite('Functional Tests', function() {
            done();
          });
        });
+       test('2 stocks', function(done) {
+        chai.request(server)
+        .get('/api/stock-prices')
+        .query({stock: ['aapl', 'goog']})
+        .end(function(err, res){
+          let stockData = res.body['stockData']
+          assert.isArray(stockData)
+          /* Stocks can come in either order */
 
-});
+          done()
+        });
+      });
+      test('2 stocks with like', function(done) {
+        chai.request(server)
+        .get('/api/stock-prices')
+        .query({stock: ['aapl', 'goog'], like: true})
+        .end(function(err, res){
+          let stockData = res.body.stockData
+          assert.isArray(stockData)
+          done()
+        });
+      });
+      test('2 stocks', function(done) {
+        chai.request(server)
+        .get('/api/stock-prices')
+        .query({stock: ['aapl', 'amzn']})
+        .end(function(err, res){
+          let stockData = res.body['stockData']
+          assert.isArray(stockData)
+          /* Stocks can come in either order */
+
+          done()
+        });
+      });
+      
+      test('2 stocks with like', function(done) {
+        chai.request(server)
+        .get('/api/stock-prices')
+        .query({stock: ['spot', 'amzn'], like: true})
+        .end(function(err, res){
+          let stockData = res.body.stockData
+          assert.isArray(stockData)
+              
+          done()
+        });
+      });
+      
+    });
+
+

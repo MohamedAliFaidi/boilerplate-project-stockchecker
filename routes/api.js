@@ -46,7 +46,7 @@ module.exports = function (app) {
           setTimeout(() =>
          { console.log(stocks)
         res.json({ stockData:stocks})}
-        , 3000);
+        , 1000);
         }
         
       
