@@ -24,7 +24,6 @@ const Stock = mongoose.model("Stock", stockSchema);
 module.exports = function (app) {
   app.route("/api/stock-prices").get(async function (req, res) {
     const ipAddress = req.headers["x-forwarded-for"] ? req.headers["x-forwarded-for"] :"127.0.0.1";
-    console.log(ipAddress);
     try {
       if (!Array.isArray(req.query.stock)) {
         console.log(req.query);
@@ -87,7 +86,7 @@ module.exports = function (app) {
 
         setTimeout(() => {
           res.json({ stockData: stocks });
-        }, 2000);
+        }, 1000);
       }
     } catch (error) {
       console.error(error);

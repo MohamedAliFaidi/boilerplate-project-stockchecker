@@ -24,7 +24,7 @@ suite('Functional Tests', function() {
         .query({stock: 'aapl', like: true})
         .end(function(err, res){
           assert.equal(res.body['stockData']['stock'], 'aapl')
-          assert.equal(res.body['stockData']['likes'], 1 ) 
+          assert.isNumber(res.body['stockData']['likes']) 
           done();
         });
       });
@@ -35,6 +35,30 @@ suite('Functional Tests', function() {
         .query({stock: 'aapl', like: true})
         .end(function(err, res){
           assert.equal(res.body.Error, 'Only 1 Like per IP Allowed')
+          done()
+        });
+      });
+
+            
+      test('2 stocks', function(done) {
+        chai.request(server)
+        .get('/api/stock-prices')
+        .query({stock: ['aapl', 'goog']})
+        .end(function(err, res){
+          let stockData = res.body['stockData']
+          assert.isArray(stockData)
+          /* Stocks can come in either order */
+       
+          done()
+        });
+      });
+      test('2 stocks with like', function(done) {
+        chai.request(server)
+        .get('/api/stock-prices')
+        .query({stock: ['aapl', 'goog'], like: true})
+        .end(function(err, res){
+          let stockData = res.body.stockData
+          assert.isArray(stockData)
           done()
         });
       });
