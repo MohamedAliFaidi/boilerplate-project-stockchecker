@@ -44,7 +44,7 @@ module.exports = function (app) {
             }}
             setTimeout(() => {
               res.json(say);
-            }, 2000);
+            }, 1000);
           } else if(stockData.ips.includes(ipAddress)) {
             console.log(stockData.ips)
             res.json({
